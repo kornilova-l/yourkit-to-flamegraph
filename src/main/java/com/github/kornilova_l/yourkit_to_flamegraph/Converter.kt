@@ -65,7 +65,7 @@ class Converter(file: File) {
 
     private fun getName(values: List<String>): String {
         val name = values[0].removePrefix("\"")
-        val openBracketPos = name.indexOf('(')
+        val openBracketPos = name.lastIndexOf('(')
         val lastSpacePos = name.substring(0, openBracketPos).lastIndexOf(' ') // remove parameters because they may contain spaces
         return name.substring(lastSpacePos + 1, name.length)
     }

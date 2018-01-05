@@ -8,10 +8,13 @@ import java.io.File
 class ConverterTest {
 
     @Test
-    fun getStacks() {
+    fun getStacksSimple() {
         assertEquals(File("src/test/resources/expected/simple.flamegraph").readLines().toSortedSet().joinToString("\n") + "\n",
                 stacksToString(Converter(File("src/test/resources/simple.csv")).getStacks()))
+    }
 
+    @Test
+    fun getStacksDepthDecreases() {
         assertEquals(File("src/test/resources/expected/depth_decreases.flamegraph").readLines().toSortedSet().joinToString("\n") + "\n",
                 stacksToString(Converter(File("src/test/resources/depth_decreases.csv")).getStacks()))
     }

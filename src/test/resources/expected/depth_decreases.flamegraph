@@ -1,4 +1,4 @@
-"java.net.Socket.connect(SocketAddress, int);java.net.SocksSocketImpl.connect(SocketAddress, int) 20
-"java.net.Socket.connect(SocketAddress, int);java.net.SocksSocketImpl.connect(SocketAddress, int);java.security.AccessController.doPrivileged(PrivilegedAction);java.net.SocksSocketImpl$3.run();java.net.SocksSocketImpl$3.run();java.net.ProxySelector.<clinit>();java.lang.Class.forName(String);java.lang.Class.forName0(String, boolean, ClassLoader, Class);sun.net.spi.DefaultProxySelector.<clinit>() 4
-java.lang.Thread.run() 30843
-java.lang.Thread.run();java.util.concurrent.ThreadPoolExecutor$Worker.run() 10870
+java.net.Socket.connect(SocketAddress, int);java.net.SocksSocketImpl.connect(SocketAddress, int) 20
+java.net.Socket.connect(SocketAddress, int);java.net.SocksSocketImpl.connect(SocketAddress, int);java.security.AccessController.doPrivileged(PrivilegedAction);java.net.SocksSocketImpl$3.run();java.net.SocksSocketImpl$3.run();java.net.ProxySelector.<clinit>();java.lang.Class.forName(String);java.lang.Class.forName0(String, boolean, ClassLoader, Class);sun.net.spi.DefaultProxySelector.<clinit>() 4
+java.net.Socket.connect(SocketAddress, int);java.lang.Thread.run() 10870
+java.net.Socket.connect(SocketAddress, int);java.lang.Thread.run();java.util.concurrent.ThreadPoolExecutor$Worker.run() 19973
