@@ -1,6 +1,7 @@
 package com.github.kornilova_l.yourkit_to_flamegraph
 
 import java.io.File
+import java.io.FileOutputStream
 
 
 /**
@@ -82,5 +83,13 @@ class Converter(file: File) {
 
     fun getStacks(): Map<String, Int> {
         return stacks
+    }
+
+    fun export(outFile: File) {
+        FileOutputStream(outFile).use { outputStream ->
+            for (entry in stacks.entries) {
+                outputStream.write("${entry.key} ${entry.value}\n".toByteArray())
+            }
+        }
     }
 }
