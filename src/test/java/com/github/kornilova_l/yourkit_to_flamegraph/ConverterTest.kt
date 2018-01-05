@@ -19,6 +19,12 @@ class ConverterTest {
                 stacksToString(Converter(File("src/test/resources/depth_decreases.csv")).getStacks()))
     }
 
+    @Test
+    fun hasSameStacks() {
+        assertEquals(File("src/test/resources/expected/has_the_same_stacks.flamegraph").readLines().toSortedSet().joinToString("\n") + "\n",
+                stacksToString(Converter(File("src/test/resources/has_the_same_stacks.csv")).getStacks()))
+    }
+
     private fun stacksToString(stacks: Map<String, Int>): String {
         val stringBuilder = StringBuilder()
         for ((key, value) in stacks.toSortedMap()) {

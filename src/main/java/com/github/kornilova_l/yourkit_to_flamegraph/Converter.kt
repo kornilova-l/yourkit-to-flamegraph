@@ -22,44 +22,46 @@ class Converter(file: File) {
             throw IllegalArgumentException("Not a csv file")
         }
         val currentStack = mutableListOf<String>()
-        var previousTime = 0
         file.forEachLine { line ->
             val values = line.split("\",\"")
             if (values[0].contains('(')) {
                 val time = getTime(values)
                 val depth = getDepth(values) - 2
-
-                updateStacks(currentStack, time, depth, previousTime)
-
-                if (values[0].contains('(')) { // if contains method
-                    updateCurrentStack(currentStack, depth, values)
+                val name = getName(values)
+                if (depth < currentStack.size) {
+                    for (i in currentStack.size - 1 downTo depth) {
+                        currentStack.removeAt(i)
+                    }
                 }
-
-                previousTime = time
+                if (currentStack.isNotEmpty()) {
+                    decreaseTime(currentStack, time)
+                }
+                currentStack.add(name)
+                addStacktrace(currentStack, time)
             }
         }
-        stacks[currentStack.joinToString(";")] = previousTime
     }
 
-    private fun updateCurrentStack(currentStack: MutableList<String>, depth: Int, values: List<String>) {
-        val name = getName(values)
-        if (depth < currentStack.size) {
-            for (i in currentStack.size - 1 downTo depth) {
-                currentStack.removeAt(i)
-            }
-        }
-        currentStack.add(name)
-    }
-
-    private fun updateStacks(currentStack: List<String>, time: Int, depth: Int, previousTime: Int) {
-        if (depth >= currentStack.size) { // if bigger (depth starts with 0)
-            if (currentStack.isNotEmpty() && previousTime - time != 0) {
-                stacks[currentStack.joinToString(";")] = previousTime - time
-            }
+    private fun addStacktrace(currentStack: MutableList<String>, time: Int) {
+        val stacktrace = currentStack.joinToString(";")
+        if (stacks.contains(stacktrace)) {
+            val previousTime = stacks[stacktrace]!!
+            stacks[stacktrace] = previousTime + time
         } else {
-            if (currentStack.isNotEmpty()) {
-                stacks[currentStack.joinToString(";")] = previousTime
-            }
+            stacks[stacktrace] = time
+        }
+    }
+
+    private fun decreaseTime(currentStack: MutableList<String>, time: Int) {
+        val stacktrace = currentStack.joinToString(";")
+        val previousTime = stacks[stacktrace]!!
+        if (previousTime - time < 0) {
+            throw AssertionError("Time of method is negative")
+        }
+        if (previousTime - time == 0) {
+            stacks.remove(stacktrace)
+        } else {
+            stacks[stacktrace] = previousTime - time
         }
     }
 

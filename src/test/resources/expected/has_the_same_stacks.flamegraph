@@ -1,0 +1,5 @@
+fun1() 14
+fun1();fun2() 15
+fun1();fun2();fun3() 80
+fun1();fun4() 1
+fun5() 10
