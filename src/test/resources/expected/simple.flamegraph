@@ -1,0 +1,6 @@
+com.intellij.rt.execution.application.AppMainV2$1.run() 10
+com.intellij.rt.execution.application.AppMainV2$1.run();java.io.BufferedReader.readLine() 15
+com.intellij.rt.execution.application.AppMainV2$1.run();java.io.BufferedReader.readLine();java.io.BufferedReader.readLine(boolean, int) 35
+com.intellij.rt.execution.application.AppMainV2$1.run();java.io.BufferedReader.readLine();java.io.BufferedReader.readLine(boolean, int);java.io.BufferedReader.fill();java.io.InputStreamReader.read(char[], int, int) 30
+com.intellij.rt.execution.application.AppMainV2$1.run();java.io.BufferedReader.readLine();java.io.BufferedReader.readLine(boolean, int);java.io.BufferedReader.fill();java.io.InputStreamReader.read(char[], int, int);sun.nio.cs.StreamDecoder.read(char[], int, int) 5
+com.intellij.rt.execution.application.AppMainV2$1.run();java.io.BufferedReader.readLine();java.io.BufferedReader.readLine(boolean, int);java.io.BufferedReader.fill();java.io.InputStreamReader.read(char[], int, int);sun.nio.cs.StreamDecoder.read(char[], int, int);java.net.SocketInputStream.socketRead0(FileDescriptor, byte[], int, int, int) 5
