@@ -34,17 +34,17 @@ class Converter(file: File) {
                         currentStack.removeAt(i)
                     }
                 }
+                val stacktrace = currentStack.joinToString(";")
                 if (currentStack.isNotEmpty()) {
-                    decreaseTime(currentStack, time)
+                    decreaseTime(stacktrace, time)
                 }
                 currentStack.add(name)
-                addStacktrace(currentStack, time)
+                addStacktrace(if (stacktrace == "") name else stacktrace + ";" + name, time)
             }
         }
     }
 
-    private fun addStacktrace(currentStack: MutableList<String>, time: Int) {
-        val stacktrace = currentStack.joinToString(";")
+    private fun addStacktrace(stacktrace: String, time: Int) {
         if (stacks.contains(stacktrace)) {
             val previousTime = stacks[stacktrace]!!
             stacks[stacktrace] = previousTime + time
@@ -53,8 +53,7 @@ class Converter(file: File) {
         }
     }
 
-    private fun decreaseTime(currentStack: MutableList<String>, time: Int) {
-        val stacktrace = currentStack.joinToString(";")
+    private fun decreaseTime(stacktrace: String, time: Int) {
         val previousTime = stacks[stacktrace]!!
         if (previousTime - time < 0) {
             throw AssertionError("Time of method is negative")
