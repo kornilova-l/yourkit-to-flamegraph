@@ -12,12 +12,6 @@ import java.io.FileOutputStream
 class Converter(file: File) {
     private val stacks = HashMap<String, Int>()
 
-    /**
-     * If new stack has bigger depth:
-     * - save previous stack with time = previous time - current time
-     * If new stack has smaller or the same depth:
-     * - save previous stack with time = previous time
-     */
     init {
         if (!file.name.endsWith("csv")) {
             throw IllegalArgumentException("Not a csv file")
@@ -27,7 +21,7 @@ class Converter(file: File) {
             val values = line.split("\",\"")
             if (values[0].contains('(')) {
                 val time = getTime(values)
-                val depth = getDepth(values) - 2
+                val depth = getDepth(values) - 2 // in csv file 0 and 1 levels have meta-info
                 val name = getName(values)
                 if (depth < currentStack.size) {
                     for (i in currentStack.size - 1 downTo depth) {
